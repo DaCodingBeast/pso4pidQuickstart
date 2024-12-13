@@ -9,6 +9,5 @@ Clone this repository and follow the tuning guide https://docs.google.com/docume
 2. In the project build.gradle (name of repository - build.gradle) remove the ```repositories {
     mavenCentral()
 }``` at the bottom of the file.
-3. In the same location make sure build gradle version is 7.2.2 ```classpath 'com.android.tools.build:gradle:7.2.2'```
-5. In the build.common.gradle change ```compileSdkVersion 29``` to ```compileSdkVersion 34```
+3. In the build.common.gradle change ```compileSdkVersion 29``` to ```compileSdkVersion 34```
 ## All set!
