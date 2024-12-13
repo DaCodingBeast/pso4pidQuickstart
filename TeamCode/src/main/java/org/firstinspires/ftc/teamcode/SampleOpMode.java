@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.acmerobotics.dashboard.FtcDashboard;
+import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
@@ -8,14 +9,16 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
+import org.firstinspires.ftc.teamcode.Constants;
 
 import java.util.ArrayList;
 
 import CommonUtilities.AngleRange;
-
+@Config
 @TeleOp(name = "SampleOpMode", group = "Linear OpMode")
 public class SampleOpMode extends LinearOpMode {
 
+    public static int x = 0;
     @Override
     public void runOpMode() {
         telemetry = new MultipleTelemetry(FtcDashboard.getInstance().getTelemetry(), telemetry);
@@ -35,8 +38,6 @@ public class SampleOpMode extends LinearOpMode {
 
         constants.pidfController.resetConstantsAndTarget(Constants.params.get(0), target);
 
-        int x =0;
-
         while (opModeInInit()) timer.reset();
         waitForStart();
 
@@ -45,7 +46,6 @@ public class SampleOpMode extends LinearOpMode {
             timer.reset();
 
             if (gamepad1.a){
-                x+=1;
                 if(targets.size()!= x) {
                     target = targets.get(x);
                 }
@@ -59,13 +59,9 @@ public class SampleOpMode extends LinearOpMode {
                 }
             }
 
-
-
-
-
             motor.setPower(constants.pidfController.calculateMotorPower(motor.getCurrentPosition(), looptime));
+            telemetry.addData("X",x);
             telemetry.update();
         }
     }
 }
-//TODO HAVE accuracy be relative to robot voltage

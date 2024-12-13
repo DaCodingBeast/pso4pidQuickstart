@@ -9,6 +9,8 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 
+import org.firstinspires.ftc.teamcode.Constants;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -30,13 +32,12 @@ public class GravityTest extends LinearOpMode {
         motor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         motor.setPower(0.0);
 
-        ArmAngle armAngle = new ArmAngle(constants.motor, constants.testingAngle.getStart());
         ArrayList<Pair<Double, Double>> dataPairs = new ArrayList<>();
 
         waitForStart();
         while (opModeIsActive()) {
 
-            double angle = armAngle.findAngle(motor.getCurrentPosition());
+            double angle = constants.armAngle.findAngle(motor.getCurrentPosition());
             //todo double angle = get voltage and convert to Radians if using an absolute encoder
 
             telemetry.addLine("Press Record to store data points, and display data points when done.");
